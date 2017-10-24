@@ -15,7 +15,7 @@ namespace AlintaTestEvgeny.Models.Movie
         public string ActorName { get; set; }
         public string MovieName { get; set; }
 
-        internal static List<MovieCharacter> GetList()
+        internal static List<MovieCharacterByActor> GetList()
         {
             var credentials = new BasicAuthenticationCredentials();
             var uri = new Uri(ConfigurationManager.AppSettings["MoviesService.BaseURL"]);
@@ -26,7 +26,12 @@ namespace AlintaTestEvgeny.Models.Movie
                 ActorName = r.Actor,
                 CharacterName = r.Name
             }).
-            OrderBy(r => r.ActorName).ThenBy(r => r.MovieName).ToList();
+            GroupBy(r => r.ActorName).
+            Select(group => new MovieCharacterByActor {
+                ActorName = group.Key,
+                CharacterList = group.OrderBy(c => c.MovieName).ToList()
+            }).
+            OrderBy(r => r.ActorName).ToList();
 
             return list;
         }

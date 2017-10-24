@@ -153,6 +153,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Movie\MovieCharacterByActor.cs" />
     <Compile Include="Models\Movie\MovieCharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RESTfulClient\IRESTfulClient.cs" />
