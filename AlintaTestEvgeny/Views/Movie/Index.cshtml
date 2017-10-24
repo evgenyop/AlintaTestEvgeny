@@ -1,0 +1,27 @@
+﻿@using AlintaTestEvgeny.Models.Movie
+@model List<MovieCharacter>
+@{
+    ViewBag.Title = "Movie characters";
+}
+
+<h2>Movie characters</h2>
+
+<p>
+    Film data is retrieved from the Alinta REST movie repository. The list is displayed in actor name groups, sorted by film name within each group.
+</p>
+
+<table>
+    <tr>
+        <th>Character Name</th>
+        <th>Actor Name</th>
+        <th>Movie Name</th>
+    </tr>
+    @foreach (var character in Model)
+    {
+        <tr>
+            <td>@character.CharacterName</td>
+            <td>@character.ActorName</td>
+            <td>@character.MovieName</td>
+        </tr>
+    }
+</table>
